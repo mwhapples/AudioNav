@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rxmaui:ReactiveContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:rxmaui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+             xmlns:vm="clr-namespace:AudioNav.ViewModels"
+             x:TypeArguments="vm:MainViewModel"
+             x:Class="AudioNav.Views.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label
+                Text="Heading"
+                FontSize="Header"
+                SemanticProperties.HeadingLevel="Level1"/>
+            <Label
+                x:Name="HeadingLabel"
+                FontFamily="Monospace"/>
+            <Label
+                Text="Filter rate"
+                FontSize="Header"
+                SemanticProperties.HeadingLevel="Level2"
+/>
+            <Slider 
+                x:Name="CompassFilterRateSlider"
+                Minimum="0"
+                Maximum="20"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</rxmaui:ReactiveContentPage>
