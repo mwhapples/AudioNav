@@ -26,6 +26,30 @@
                 x:Name="CompassFilterRateSlider"
                 Minimum="0"
                 Maximum="20"/>
+            <Label
+                Text="Course"
+                FontSize="Header"
+                SemanticProperties.HeadingLevel="Level2" />
+            <HorizontalStackLayout>
+                <Button
+                    x:Name="LargeDecrementButton"
+                    Text="&lt;&lt;"
+                    SemanticProperties.Description="Large decrement"/>
+                <Button
+                    x:Name="DecrementButton"
+                    Text="&lt;"
+                    SemanticProperties.Description="Decrement"/>
+                <Label
+                    x:Name="CourseLabel"/>
+                <Button
+                    x:Name="IncrementButton"
+                    Text="&gt;"
+                    SemanticProperties.Description="Increment"/>
+                <Button
+                    x:Name="LargeIncrementButton"
+                    Text="&gt;&gt;"
+                    SemanticProperties.Description="Large increment"/>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
