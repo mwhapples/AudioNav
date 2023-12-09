@@ -16,9 +16,9 @@ public partial class MainPage : ReactiveContentPage<MainViewModel>
         InitializeComponent();
         this.WhenActivated(disposables =>
         {
-            this.Bind(ViewModel, vm => vm.CompassFilterRate, v => v.CompassFilterRateSlider.Value).DisposeWith(disposables);
             this.HeadingView.ViewModel = new SimpleHeadingViewModel(ViewModel.AudioCompass);
             this.CoursePicker.ViewModel = new SimpleCourseViewModel(ViewModel.AudioCompass);
+            this.FilterRateView.ViewModel = new FilterRateViewModel(ViewModel.AudioCompass);
         });
     }
 }

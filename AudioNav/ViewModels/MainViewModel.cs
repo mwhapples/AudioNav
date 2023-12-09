@@ -18,17 +18,8 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
         AudioCompass = new();
         Locator.CurrentMutable.Register(() => new SimpleHeadingView(), typeof(IViewFor<SimpleHeadingViewModel>));
         Locator.CurrentMutable.Register(() => new SimpleCourseView(), typeof(IViewFor<SimpleCourseViewModel>));
-        compassFilterRate = AudioCompass.FilterRate.ToProperty(this, x => x.CompassFilterRate);
-        filteredCompass = AudioCompass.CompassHeading.ToProperty(this, x => x.FilteredCompass);
+        Locator.CurrentMutable.Register(() => new FilterRateView(), typeof(IViewFor<FilterRateViewModel>));
     }
 
     public ViewModelActivator Activator { get; } = new();
-    private readonly ObservableAsPropertyHelper<int> compassFilterRate;
-    public int CompassFilterRate
-    {
-        get => compassFilterRate.Value;
-        set => AudioCompass.ChangeFilterRate(value);
-    }
-    private readonly ObservableAsPropertyHelper<CompassData> filteredCompass;
-    public CompassData FilteredCompass => filteredCompass.Value;
 }

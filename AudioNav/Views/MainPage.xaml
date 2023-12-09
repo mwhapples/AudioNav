@@ -10,19 +10,13 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            <Label
-                Text="Filter rate"
-                FontSize="Header"
-                SemanticProperties.HeadingLevel="Level2"
-/>
-            <Slider 
-                x:Name="CompassFilterRateSlider"
-                Minimum="0"
-                Maximum="20"/>
+            
             <rxmaui:ViewModelViewHost
                 x:Name="HeadingView"/>
             <rxmaui:ViewModelViewHost
                 x:Name="CoursePicker"/>
+            <rxmaui:ViewModelViewHost
+                x:Name="FilterRateView"/>
         </VerticalStackLayout>
     </ScrollView>
 
