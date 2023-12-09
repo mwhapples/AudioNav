@@ -11,15 +11,14 @@ public class CourseToHeadingViewModel : ReactiveObject, IActivatableViewModel
 {
     public CourseToHeadingViewModel(AudioCompass audioCompass)
     {
-        var headingSubject = new BehaviorSubject<Heading>(Heading.FromDegrees(0));
-        var canExecute = new BehaviorSubject<bool>(false);
+        currentHeading = audioCompass.CompassHeading.Where(x => x is CompassData.HeadingReading).Select(x => ((CompassData.HeadingReading)x).Heading).ToProperty(this, x => x.CurrentHeading);
+        var canExecute = audioCompass.CompassHeading.Select(x => x is CompassData.HeadingReading);
+        ChangeCourseToCurrentHeadingCommand = ReactiveCommand.Create(() => audioCompass.ChangeCourse(CurrentHeading), canExecute);
         this.WhenActivated(disposables =>
         {
-            audioCompass.CompassHeading.Where(x => x is CompassData.HeadingReading).Select(x => ((CompassData.HeadingReading)x).Heading).Subscribe(headingSubject).DisposeWith(disposables);
-            audioCompass.CompassHeading.Select(x => !(x is CompassData.HeadingReading)).Subscribe(canExecute).DisposeWith(disposables);
+            currentHeading.DisposeWith(disposables);
+            ChangeCourseToCurrentHeadingCommand.DisposeWith(disposables);
         });
-        currentHeading = headingSubject.ToProperty(this, x => x.CurrentHeading);
-        ChangeCourseToCurrentHeadingCommand = ReactiveCommand.Create(() => audioCompass.ChangeCourse(CurrentHeading));
     }
     public ViewModelActivator Activator { get; } = new();
     private readonly ObservableAsPropertyHelper<Heading> currentHeading;

@@ -11,12 +11,11 @@ public class FilterRateViewModel : ReactiveObject, IActivatableViewModel
     public FilterRateViewModel(AudioCompass audioCompass)
     {
         this.audioCompass = audioCompass;
-        var filterRateSubject = new BehaviorSubject<int>(0);
+        compassFilterRate = audioCompass.FilterRate.ToProperty(this, x => x.CompassFilterRate);
         this.WhenActivated(disposables =>
         {
-            audioCompass.FilterRate.Subscribe(filterRateSubject).DisposeWith(disposables);
+            compassFilterRate.DisposeWith(disposables);
         });
-        compassFilterRate = filterRateSubject.ToProperty(this, x => x.CompassFilterRate);
     }
     public ViewModelActivator Activator { get; } = new();
     private readonly ObservableAsPropertyHelper<int> compassFilterRate;
