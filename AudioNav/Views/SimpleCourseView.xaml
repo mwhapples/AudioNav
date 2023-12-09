@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rxmaui:ReactiveContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:rxmaui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+             xmlns:vm="clr-namespace:AudioNav.ViewModels"
+                            x:TypeArguments="vm:SimpleCourseViewModel"
+             x:Class="AudioNav.Views.SimpleCourseView">
+    <VerticalStackLayout>
+        <Label
+            Text="Course"
+            FontSize="Header"
+            SemanticProperties.HeadingLevel="Level2"/>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="LargeDecrementButton"
+                Text="&lt;&lt;"
+                SemanticProperties.Description="Large decrement"/>
+            <Button
+                x:Name="DecrementButton"
+                Text="&lt;"
+                SemanticProperties.Description="Decrement"/>
+            <Label
+                x:Name="CourseLabel"/>
+            <Button
+                x:Name="IncrementButton"
+                Text="&gt;"
+                SemanticProperties.Description="Increment"/>
+            <Button
+                x:Name="LargeIncrementButton"
+                Text="&gt;&gt;"
+                SemanticProperties.Description="Large increment"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</rxmaui:ReactiveContentView>

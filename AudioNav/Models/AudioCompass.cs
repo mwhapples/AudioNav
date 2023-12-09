@@ -5,7 +5,7 @@ using System.Reactive.Subjects;
 
 namespace AudioNav.Models;
 
-internal class Audio_compass
+public class AudioCompass
 {
     private readonly ISubject<ICompassProvider> compassProvider = new BehaviorSubject<ICompassProvider>(new MagneticCompassProvider());
     private readonly ISubject<Heading> course = new BehaviorSubject<Heading>(Heading.FromDegrees(0));

@@ -11,13 +11,6 @@
             Padding="30,0"
             Spacing="25">
             <Label
-                Text="Heading"
-                FontSize="Header"
-                SemanticProperties.HeadingLevel="Level1"/>
-            <Label
-                x:Name="HeadingLabel"
-                FontFamily="Monospace"/>
-            <Label
                 Text="Filter rate"
                 FontSize="Header"
                 SemanticProperties.HeadingLevel="Level2"
@@ -26,30 +19,10 @@
                 x:Name="CompassFilterRateSlider"
                 Minimum="0"
                 Maximum="20"/>
-            <Label
-                Text="Course"
-                FontSize="Header"
-                SemanticProperties.HeadingLevel="Level2" />
-            <HorizontalStackLayout>
-                <Button
-                    x:Name="LargeDecrementButton"
-                    Text="&lt;&lt;"
-                    SemanticProperties.Description="Large decrement"/>
-                <Button
-                    x:Name="DecrementButton"
-                    Text="&lt;"
-                    SemanticProperties.Description="Decrement"/>
-                <Label
-                    x:Name="CourseLabel"/>
-                <Button
-                    x:Name="IncrementButton"
-                    Text="&gt;"
-                    SemanticProperties.Description="Increment"/>
-                <Button
-                    x:Name="LargeIncrementButton"
-                    Text="&gt;&gt;"
-                    SemanticProperties.Description="Large increment"/>
-            </HorizontalStackLayout>
+            <rxmaui:ViewModelViewHost
+                x:Name="HeadingView"/>
+            <rxmaui:ViewModelViewHost
+                x:Name="CoursePicker"/>
         </VerticalStackLayout>
     </ScrollView>
 
