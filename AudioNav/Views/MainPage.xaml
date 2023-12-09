@@ -16,6 +16,8 @@
             <rxmaui:ViewModelViewHost
                 x:Name="CoursePicker"/>
             <rxmaui:ViewModelViewHost
+                x:Name="CourseToHeadingView"/>
+            <rxmaui:ViewModelViewHost
                 x:Name="FilterRateView"/>
         </VerticalStackLayout>
     </ScrollView>

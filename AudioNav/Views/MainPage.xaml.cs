@@ -18,6 +18,7 @@ public partial class MainPage : ReactiveContentPage<MainViewModel>
         {
             this.HeadingView.ViewModel = new SimpleHeadingViewModel(ViewModel.AudioCompass);
             this.CoursePicker.ViewModel = new SimpleCourseViewModel(ViewModel.AudioCompass);
+            this.CourseToHeadingView.ViewModel = new CourseToHeadingViewModel(ViewModel.AudioCompass);
             this.FilterRateView.ViewModel = new FilterRateViewModel(ViewModel.AudioCompass);
         });
     }
