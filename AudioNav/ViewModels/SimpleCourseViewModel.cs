@@ -1,7 +1,9 @@
 ﻿using AudioNav.Models;
 using ReactiveUI;
 using System.Reactive;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 
 namespace AudioNav.ViewModels;
 
@@ -11,7 +13,12 @@ public class SimpleCourseViewModel : ReactiveObject, IActivatableViewModel
     public SimpleCourseViewModel(AudioCompass audioCompass)
     {
         this.audioCompass = audioCompass;
-        course = audioCompass.Course.Select(x => (int)x.Degrees).ToProperty(this, x => x.Course);
+        var courseSubject = new BehaviorSubject<int>(0);
+        this.WhenActivated(disposables =>
+        {
+            audioCompass.Course.Select(x => (int)x.Degrees).Subscribe(courseSubject).DisposeWith(disposables);
+        });
+        course = courseSubject.ToProperty(this, x => x.Course);
         IncrementCourseCommand = ReactiveCommand.Create<int>(x => Course += x);
     }
     public ViewModelActivator Activator { get; } = new();

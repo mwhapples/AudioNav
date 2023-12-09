@@ -1,5 +1,7 @@
 ﻿using AudioNav.Models;
 using ReactiveUI;
+using System.Reactive.Disposables;
+using System.Reactive.Subjects;
 
 namespace AudioNav.ViewModels;
 
@@ -9,7 +11,12 @@ public class FilterRateViewModel : ReactiveObject, IActivatableViewModel
     public FilterRateViewModel(AudioCompass audioCompass)
     {
         this.audioCompass = audioCompass;
-        compassFilterRate = audioCompass.FilterRate.ToProperty(this, x => x.CompassFilterRate);
+        var filterRateSubject = new BehaviorSubject<int>(0);
+        this.WhenActivated(disposables =>
+        {
+            audioCompass.FilterRate.Subscribe(filterRateSubject).DisposeWith(disposables);
+        });
+        compassFilterRate = filterRateSubject.ToProperty(this, x => x.CompassFilterRate);
     }
     public ViewModelActivator Activator { get; } = new();
     private readonly ObservableAsPropertyHelper<int> compassFilterRate;
