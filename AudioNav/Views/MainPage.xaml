@@ -10,7 +10,9 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            
+
+            <rxmaui:ViewModelViewHost
+                x:Name="AudioView"/>
             <rxmaui:ViewModelViewHost
                 x:Name="HeadingView"/>
             <rxmaui:ViewModelViewHost
