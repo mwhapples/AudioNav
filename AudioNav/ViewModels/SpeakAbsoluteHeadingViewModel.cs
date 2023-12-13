@@ -26,7 +26,7 @@ public class SpeakAbsoluteHeadingViewModel : ReactiveObject, IActivatableViewMod
                     {
                         await TextToSpeech.Default.SpeakAsync(heading.Value switch
                         {
-                            CompassData.HeadingReading r => r.Heading.Degrees.ToString("000"),
+                            CompassData.HeadingReading r => r.Heading.Degrees.ToString("0 0 0"),
                             _ => "No heading"
                         }, cancelToken: cancellationToken);
                         await Task.Delay(TimeSpan.FromMilliseconds(500), cancellationToken:  cancellationToken);
