@@ -18,8 +18,8 @@ public class FilterRateViewModel : ReactiveObject, IActivatableViewModel
         });
     }
     public ViewModelActivator Activator { get; } = new();
-    private readonly ObservableAsPropertyHelper<int> compassFilterRate;
-    public int CompassFilterRate
+    private readonly ObservableAsPropertyHelper<double> compassFilterRate;
+    public double CompassFilterRate
     {
         get => compassFilterRate.Value;
         set => audioCompass.ChangeFilterRate(value);

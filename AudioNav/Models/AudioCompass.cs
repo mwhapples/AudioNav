@@ -9,12 +9,12 @@ public class AudioCompass
 {
     private readonly ISubject<ICompassProvider> compassProvider = new BehaviorSubject<ICompassProvider>(new MagneticCompassProvider());
     private readonly ISubject<Heading> course = new BehaviorSubject<Heading>(Heading.FromDegrees(0));
-    private readonly ISubject<int> filterRate = new BehaviorSubject<int>(10);
+    private readonly ISubject<double> filterRate = new BehaviorSubject<double>(0.1);
     public IObservable<ICompassProvider> CompassProvider => compassProvider.AsObservable();
     public void ChangeCompassProvider(ICompassProvider newCompassProvider) => compassProvider.OnNext(newCompassProvider);
     public IObservable<Heading> Course => course.AsObservable();
     public void ChangeCourse(Heading newCourse) => course.OnNext(newCourse);
     public IObservable<CompassData> CompassHeading => compassProvider.Select(x => x.CompassObservable).Switch().LowPassFilter(filterRate);
-    public IObservable<int> FilterRate => filterRate.AsObservable();
-    public void ChangeFilterRate(int newFilterRate) => filterRate.OnNext(newFilterRate);
+    public IObservable<double> FilterRate => filterRate.AsObservable();
+    public void ChangeFilterRate(double newFilterRate) => filterRate.OnNext(newFilterRate);
 }
