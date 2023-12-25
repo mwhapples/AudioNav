@@ -2,15 +2,24 @@
 using AudioNav.Views;
 using ReactiveUI;
 using Splat;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace AudioNav.ViewModels;
 
 public class MainViewModel : ReactiveObject, IActivatableViewModel
 {
+    private ObservableAsPropertyHelper<object?> filterRate;
+    private object audioOutput;
     public MainViewModel()
     {
         AudioCompass = new();
         audioOutput = new SpeakAbsoluteHeadingViewModel(AudioCompass);
+        filterRate = AudioCompass.CompassProvider.Select(x => x is IFilteredSensor ? new FilterRateViewModel((IFilteredSensor)x) : null).ToProperty(this, x => x.FilterRate);
+        this.WhenActivated(disposables =>
+        {
+            filterRate.DisposeWith(disposables);
+        });
         Locator.CurrentMutable.Register(() => new SpeakAbsoluteHeadingView(), typeof(IViewFor<SpeakAbsoluteHeadingViewModel>));
         Locator.CurrentMutable.Register(() => new SimpleHeadingView(), typeof(IViewFor<SimpleHeadingViewModel>));
         Locator.CurrentMutable.Register(() => new SimpleCourseView(), typeof(IViewFor<SimpleCourseViewModel>));
@@ -20,9 +29,13 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
 
     public ViewModelActivator Activator { get; } = new();
     public AudioCompass AudioCompass { get; }
-    private object audioOutput;
+   
     public object AudioOutput {
         get => audioOutput;
         set => this.RaiseAndSetIfChanged(ref audioOutput, value);
+    }
+    public object? FilterRate
+    {
+        get => filterRate.Value;
     }
 }

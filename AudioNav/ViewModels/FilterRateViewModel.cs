@@ -7,11 +7,11 @@ namespace AudioNav.ViewModels;
 
 public class FilterRateViewModel : ReactiveObject, IActivatableViewModel
 {
-    private readonly AudioCompass audioCompass;
-    public FilterRateViewModel(AudioCompass audioCompass)
+    private IFilteredSensor filteredSensor;
+    public FilterRateViewModel(IFilteredSensor filteredSensor)
     {
-        this.audioCompass = audioCompass;
-        compassFilterRate = audioCompass.FilterRate.ToProperty(this, x => x.CompassFilterRate);
+        this.filteredSensor = filteredSensor;
+        compassFilterRate = filteredSensor.FilterRate.ToProperty(this, x => x.CompassFilterRate);
         this.WhenActivated(disposables =>
         {
             compassFilterRate.DisposeWith(disposables);
@@ -22,6 +22,6 @@ public class FilterRateViewModel : ReactiveObject, IActivatableViewModel
     public double CompassFilterRate
     {
         get => compassFilterRate.Value;
-        set => audioCompass.ChangeFilterRate(value);
+        set => filteredSensor.ChangeFilterRate(value);
     }
 }
