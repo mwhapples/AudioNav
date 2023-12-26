@@ -12,6 +12,8 @@
             Spacing="25">
 
             <rxmaui:ViewModelViewHost
+                x:Name="SensorPickerView"/>
+            <rxmaui:ViewModelViewHost
                 x:Name="AudioView"/>
             <rxmaui:ViewModelViewHost
                 x:Name="HeadingView"/>

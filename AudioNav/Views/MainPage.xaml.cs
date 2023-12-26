@@ -16,6 +16,7 @@ public partial class MainPage : ReactiveContentPage<MainViewModel>
         InitializeComponent();
         this.WhenActivated(disposables =>
         {
+            this.SensorPickerView.ViewModel = new SensorSelectorViewModel(ViewModel.AudioCompass);
             this.OneWayBind(ViewModel, vm => vm.AudioOutput, v => v.AudioView.ViewModel);
             this.HeadingView.ViewModel = new SimpleHeadingViewModel(ViewModel.AudioCompass);
             this.CoursePicker.ViewModel = new SimpleCourseViewModel(ViewModel.AudioCompass);

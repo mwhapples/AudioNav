@@ -25,6 +25,7 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
         Locator.CurrentMutable.Register(() => new SimpleCourseView(), typeof(IViewFor<SimpleCourseViewModel>));
         Locator.CurrentMutable.Register(() => new CourseToHeadingView(), typeof(IViewFor<CourseToHeadingViewModel>));
         Locator.CurrentMutable.Register(() => new FilterRateView(), typeof(IViewFor<FilterRateViewModel>));
+        Locator.CurrentMutable.Register(() => new SensorSelectorView(), typeof(IViewFor<SensorSelectorViewModel>));
     }
 
     public ViewModelActivator Activator { get; } = new();
@@ -34,8 +35,5 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
         get => audioOutput;
         set => this.RaiseAndSetIfChanged(ref audioOutput, value);
     }
-    public object? FilterRate
-    {
-        get => filterRate.Value;
-    }
+    public object? FilterRate => filterRate.Value;
 }

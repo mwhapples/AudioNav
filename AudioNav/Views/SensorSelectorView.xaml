@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rxmaui:ReactiveContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AudioNav.ViewModels"
+             xmlns:rxmaui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+             x:Class="AudioNav.Views.SensorSelectorView"
+             x:TypeArguments="vm:SensorSelectorViewModel">
+    <VerticalStackLayout>
+        <Picker
+            x:Name="SensorPicker"/>
+    </VerticalStackLayout>
+</rxmaui:ReactiveContentView>
