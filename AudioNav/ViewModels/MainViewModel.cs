@@ -19,6 +19,7 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
         this.WhenActivated(disposables =>
         {
             filterRate.DisposeWith(disposables);
+            AudioCompass.DisposeWith(disposables);
         });
         Locator.CurrentMutable.Register(() => new SpeakAbsoluteHeadingView(), typeof(IViewFor<SpeakAbsoluteHeadingViewModel>));
         Locator.CurrentMutable.Register(() => new SimpleHeadingView(), typeof(IViewFor<SimpleHeadingViewModel>));
