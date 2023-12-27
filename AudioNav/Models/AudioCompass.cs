@@ -18,14 +18,16 @@ public class AudioCompass : IDisposable
     private readonly AudioCompassOutputData outputData;
     public AudioCompass()
     {
+        AvailableSensors = [new MagneticCompassProvider(), new DummyCompassProvider()];
+        AvailableOutputs = [new DummyOutput(), new SpeakAbsoluteHeadingOutput() ];
         course = new BehaviorSubject<Heading>(Heading.FromDegrees(0));
-        AvailableSensors = [ new MagneticCompassProvider(), new DummyCompassProvider() ];
         compassProvider = new BehaviorSubject<ICompassProvider>(AvailableSensors.First());
+        output = new BehaviorSubject<IAudioCompassOutput>(AvailableOutputs.First());
         outputData = new AudioCompassOutputData(CompassHeading, Course);
-        output = new BehaviorSubject<IAudioCompassOutput>(new SpeakAbsoluteHeadingOutput());
         outputDisposable = output.Select(x => Observable.Create<Unit>(async (observer, cancellationToken) => await x.RunAsync(outputData, cancellationToken))).Switch().Subscribe();
     }
     public ImmutableList<ICompassProvider> AvailableSensors { get; }
+    public ImmutableList<IAudioCompassOutput> AvailableOutputs { get; }
     public IObservable<ICompassProvider> CompassProvider => compassProvider.AsObservable();
     public void ChangeCompassProvider(ICompassProvider newCompassProvider) => compassProvider.OnNext(newCompassProvider);
     public IObservable<Heading> Course => course.AsObservable();

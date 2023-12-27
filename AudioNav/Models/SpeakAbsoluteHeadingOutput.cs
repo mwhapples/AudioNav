@@ -8,6 +8,7 @@ namespace AudioNav.Models;
 
 public class SpeakAbsoluteHeadingOutput : IAudioCompassOutput
 {
+    public string Name { get; } = "Speak absolute heading";
     public async Task RunAsync(AudioCompassOutputData outputData, CancellationToken cancellationToken)
     {
         var heading = new BehaviorSubject<CompassData>(new CompassData.NoHeading());

@@ -13,7 +13,6 @@ public class SensorSelectorViewModel : ReactiveObject, IActivatableViewModel
     public SensorSelectorViewModel(AudioCompass audioCompass)
     {
         this.audioCompass = audioCompass;
-        CompassProviders = audioCompass.AvailableSensors;
         compassProvider = audioCompass.CompassProvider.ToProperty(this, x => x.CompassProvider);
         this.WhenActivated(disposables =>
         {
@@ -26,5 +25,5 @@ public class SensorSelectorViewModel : ReactiveObject, IActivatableViewModel
         get => compassProvider.Value;
         set => audioCompass.ChangeCompassProvider(value);
     }
-    public ImmutableList<ICompassProvider> CompassProviders { get; }
+    public ImmutableList<ICompassProvider> CompassProviders => audioCompass.AvailableSensors;
 }

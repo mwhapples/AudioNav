@@ -73,6 +73,9 @@
 	  <MauiXaml Update="Views\FilterRateView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\OutputSelectorView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\SensorSelectorView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
