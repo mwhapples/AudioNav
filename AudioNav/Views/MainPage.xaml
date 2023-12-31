@@ -16,8 +16,6 @@
             <rxmaui:ViewModelViewHost
                 x:Name="OutputPickerView"/>
             <rxmaui:ViewModelViewHost
-                x:Name="AudioView"/>
-            <rxmaui:ViewModelViewHost
                 x:Name="HeadingView"/>
             <rxmaui:ViewModelViewHost
                 x:Name="CoursePicker"/>

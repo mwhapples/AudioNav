@@ -18,11 +18,10 @@ public partial class MainPage : ReactiveContentPage<MainViewModel>
         {
             this.SensorPickerView.ViewModel = new SensorSelectorViewModel(ViewModel.AudioCompass);
             this.OutputPickerView.ViewModel = new OutputSelectorViewModel(ViewModel.AudioCompass);
-            this.OneWayBind(ViewModel, vm => vm.AudioOutput, v => v.AudioView.ViewModel);
             this.HeadingView.ViewModel = new SimpleHeadingViewModel(ViewModel.AudioCompass);
             this.CoursePicker.ViewModel = new SimpleCourseViewModel(ViewModel.AudioCompass);
             this.CourseToHeadingView.ViewModel = new CourseToHeadingViewModel(ViewModel.AudioCompass);
-            this.OneWayBind(ViewModel, vm => vm.FilterRate, v => v.FilterRateView.ViewModel);
+            this.OneWayBind(ViewModel, vm => vm.FilterRate, v => v.FilterRateView.ViewModel).DisposeWith(disposables);
         });
     }
 }

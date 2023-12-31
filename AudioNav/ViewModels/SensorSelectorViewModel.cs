@@ -8,16 +8,12 @@ namespace AudioNav.ViewModels;
 
 public class SensorSelectorViewModel : ReactiveObject, IActivatableViewModel
 {
-    private AudioCompass audioCompass;
-    private ObservableAsPropertyHelper<ICompassProvider> compassProvider;
+    private readonly AudioCompass audioCompass;
+    private readonly ObservableAsPropertyHelper<ICompassProvider> compassProvider;
     public SensorSelectorViewModel(AudioCompass audioCompass)
     {
         this.audioCompass = audioCompass;
         compassProvider = audioCompass.CompassProvider.ToProperty(this, x => x.CompassProvider);
-        this.WhenActivated(disposables =>
-        {
-            compassProvider.DisposeWith(disposables);
-        });
     }
     public ViewModelActivator Activator { get; } = new();
     public ICompassProvider CompassProvider
