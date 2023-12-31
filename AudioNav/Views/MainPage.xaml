@@ -4,25 +4,19 @@
              xmlns:rxmaui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
              xmlns:vm="clr-namespace:AudioNav.ViewModels"
              x:TypeArguments="vm:MainViewModel"
-             x:Class="AudioNav.Views.MainPage">
+             x:Class="AudioNav.Views.MainPage"
+                            x:DataType="vm:MainViewModel">
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
-            Spacing="25">
-
-            <rxmaui:ViewModelViewHost
-                x:Name="SensorPickerView"/>
-            <rxmaui:ViewModelViewHost
-                x:Name="OutputPickerView"/>
-            <rxmaui:ViewModelViewHost
-                x:Name="HeadingView"/>
-            <rxmaui:ViewModelViewHost
-                x:Name="CoursePicker"/>
-            <rxmaui:ViewModelViewHost
-                x:Name="CourseToHeadingView"/>
-            <rxmaui:ViewModelViewHost
-                x:Name="FilterRateView"/>
+            Spacing="25"
+            BindableLayout.ItemsSource="{Binding ViewModels}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <rxmaui:ViewModelViewHost ViewModel="{Binding .}"/>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
     </ScrollView>
 
