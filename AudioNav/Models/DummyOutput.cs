@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -7,15 +9,5 @@ namespace AudioNav.Models;
 public class DummyOutput : IAudioCompassOutput
 {
     public string Name { get; } = "No output";
-    public async Task RunAsync(AudioCompassOutputData outputData, CancellationToken cancellationToken)
-    {
-        while (!cancellationToken.IsCancellationRequested)
-        {
-            try
-            {
-                await Task.Delay(TimeSpan.FromDays(1));
-            }
-            catch (OperationCanceledException) { }
-        }
-    }
+    public IObservable<Unit> CreateOutputObservable(AudioCompassOutputData outputData) => Observable.Never<Unit>();
 }

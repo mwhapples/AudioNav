@@ -24,7 +24,7 @@ public class AudioCompass : IDisposable
         compassProvider = new BehaviorSubject<ICompassProvider>(AvailableSensors.First());
         output = new BehaviorSubject<IAudioCompassOutput>(AvailableOutputs.First());
         outputData = new AudioCompassOutputData(CompassHeading, Course);
-        outputDisposable = output.Select(x => Observable.Create<Unit>(async (observer, cancellationToken) => await x.RunAsync(outputData, cancellationToken))).Switch().Subscribe();
+        outputDisposable = output.Select(x => x.CreateOutputObservable(outputData)).Switch().Subscribe();
     }
     public ImmutableList<ICompassProvider> AvailableSensors { get; }
     public ImmutableList<IAudioCompassOutput> AvailableOutputs { get; }

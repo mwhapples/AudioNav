@@ -1,5 +1,7 @@
 ﻿using Microsoft.Maui.Media;
 using System;
+using System.Reactive;
+using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,4 +31,5 @@ public class SpeakAbsoluteHeadingOutput : IAudioCompassOutput
             }
         }
     }
+    public IObservable<Unit> CreateOutputObservable(AudioCompassOutputData outputData) => Observable.Create<Unit>(async (_, ct) => await RunAsync(outputData, ct));
 }
