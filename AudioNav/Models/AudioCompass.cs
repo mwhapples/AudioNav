@@ -18,8 +18,9 @@ public class AudioCompass : IDisposable
     private readonly AudioCompassOutputData outputData;
     public AudioCompass()
     {
-        AvailableSensors = [new MagneticCompassProvider(), new DummyCompassProvider()];
-        AvailableOutputs = [new DummyOutput(), new SpeakAbsoluteHeadingOutput() ];
+        ImmutableList<ICompassProvider> sensors = [new MagneticCompassProvider(), new DummyCompassProvider()];
+        AvailableSensors = sensors.Where(x => x.IsSupported).ToImmutableList();
+        AvailableOutputs = [new DummyOutput(), new SpeakAbsoluteHeadingOutput()];
         course = new BehaviorSubject<Heading>(Heading.FromDegrees(0));
         compassProvider = new BehaviorSubject<ICompassProvider>(AvailableSensors.First());
         output = new BehaviorSubject<IAudioCompassOutput>(AvailableOutputs.First());

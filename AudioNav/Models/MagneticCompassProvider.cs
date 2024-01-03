@@ -27,4 +27,5 @@ internal class MagneticCompassProvider : ICompassProvider, IFilteredSensor
     public void ChangeFilterRate(double filterRate) => this.filterRate.OnNext(filterRate);
     public IObservable<CompassData> CompassObservable { get; }
     public string Name { get; } = "Magnetic compass";
+    public bool IsSupported => Compass.IsSupported;
 }
