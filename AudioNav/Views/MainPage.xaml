@@ -2,6 +2,7 @@
 <rxmaui:ReactiveContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:rxmaui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+             xmlns:v="clr-namespace:AudioNav.Views"
              xmlns:vm="clr-namespace:AudioNav.ViewModels"
              x:TypeArguments="vm:MainViewModel"
              x:Class="AudioNav.Views.MainPage"
@@ -12,11 +13,15 @@
             Padding="30,0"
             Spacing="25"
             BindableLayout.ItemsSource="{Binding ViewModels}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <rxmaui:ViewModelViewHost ViewModel="{Binding .}"/>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
+            <BindableLayout.ItemTemplateSelector>
+                <v:CompassViewTemplateSelector>
+                    <v:CompassViewTemplateSelector.UnknownTemplate>
+                        <DataTemplate>
+                            <Label Text="Unknown"/>
+                        </DataTemplate>
+                    </v:CompassViewTemplateSelector.UnknownTemplate>
+                </v:CompassViewTemplateSelector>
+            </BindableLayout.ItemTemplateSelector>
         </VerticalStackLayout>
     </ScrollView>
 
