@@ -21,7 +21,7 @@
                 SemanticProperties.Description="Decrement"/>
             <Label
                 x:Name="CourseLabel"
-                FontFamily="DejavuMono"/>
+                FontFamily="IBMPlexMonoRegular"/>
             <Button
                 x:Name="IncrementButton"
                 Text="&gt;"
