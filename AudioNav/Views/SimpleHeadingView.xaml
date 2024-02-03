@@ -13,6 +13,6 @@
 />
         <Label
             x:Name="HeadingLabel"
-            FontFamily="Monospace"/>
+            FontFamily="DejavuSansMono"/>
     </VerticalStackLayout>
 </rxmaui:ReactiveContentView>

@@ -20,7 +20,8 @@
                 Text="&lt;"
                 SemanticProperties.Description="Decrement"/>
             <Label
-                x:Name="CourseLabel"/>
+                x:Name="CourseLabel"
+                FontFamily="DejavuMono"/>
             <Button
                 x:Name="IncrementButton"
                 Text="&gt;"

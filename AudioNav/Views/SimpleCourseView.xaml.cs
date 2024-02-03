@@ -16,7 +16,7 @@ public partial class SimpleCourseView : ReactiveContentView<SimpleCourseViewMode
             this.LargeDecrementButton.CommandParameter = -10;
             this.OneWayBind(ViewModel, vm => vm.IncrementCourseCommand, v => v.DecrementButton.Command).DisposeWith(disposables);
             this.DecrementButton.CommandParameter = -1;
-            this.OneWayBind(ViewModel, vm => vm.Course, v => v.CourseLabel.Text).DisposeWith(disposables);
+            this.OneWayBind(ViewModel, vm => vm.Course, v => v.CourseLabel.Text, x => x.ToString("000")).DisposeWith(disposables);
             this.OneWayBind(ViewModel, vm => vm.IncrementCourseCommand, v => v.IncrementButton.Command).DisposeWith(disposables);
             this.IncrementButton.CommandParameter = 1;
             this.OneWayBind(ViewModel, vm => vm.IncrementCourseCommand, v => v.LargeIncrementButton.Command).DisposeWith(disposables);
