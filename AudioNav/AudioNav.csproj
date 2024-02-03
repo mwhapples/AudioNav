@@ -24,7 +24,7 @@
 		<ApplicationTitle>AudioNav</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>onl.mdw.audionav</ApplicationId>
+		<ApplicationId>app.audionav.audionav</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
