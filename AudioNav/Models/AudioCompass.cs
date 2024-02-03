@@ -20,7 +20,7 @@ public class AudioCompass : IDisposable
     {
         ImmutableList<ICompassProvider> sensors = [new MagneticCompassProvider(), new DummyCompassProvider()];
         AvailableSensors = sensors.Where(x => x.IsSupported).ToImmutableList();
-        AvailableOutputs = [new DummyOutput(), new SpeakAbsoluteHeadingOutput()];
+        AvailableOutputs = [new DummyOutput(), new SpeakAbsoluteHeadingOutput(), new SpeakRelativeHeadingOutput()];
         course = new BehaviorSubject<Heading>(Heading.FromDegrees(0));
         compassProvider = new BehaviorSubject<ICompassProvider>(AvailableSensors.First());
         output = new BehaviorSubject<IAudioCompassOutput>(AvailableOutputs.First());
